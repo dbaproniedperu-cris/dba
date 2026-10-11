@@ -9,6 +9,7 @@ Carpeta base: `D:\NEGOCIO\SOFTWARE\JUEGOS` (raíz del repositorio git).
 | `ESTADO-Y-CONTINUIDAD.md` | **Léelo primero.** Dónde quedó el trabajo, qué sigue y qué está verificado |
 | `DECISIONES-DE-DISENO.md` | Decisiones tomadas y propuestas, con su motivo |
 | `PROPUESTA-TECNOLOGIA.md` | Comparación de tecnologías y recomendación (primera entrega) |
+| `EVALUACION-JUEGO-TIPO-PHOENIX.md` | Estimación de tiempo y alcance de un juego de naves del género de *Phoenix* (1980) |
 | `.gitattributes` | Fuerza el fin de línea LF para que las huellas SHA-256 coincidan en toda máquina |
 | `<NOMBRE-JUEGO>\` | Un juego por carpeta, con su código, recursos, pruebas y `LEEME.md` (todavía no hay ninguno) |
 | `COMUN\` | Base reutilizable con versión (todavía no existe) |

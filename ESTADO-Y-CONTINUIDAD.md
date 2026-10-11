@@ -3,20 +3,29 @@
 > **Regla:** después de cada compactación de la conversación, este documento se lee **COMPLETO** antes
 > de seguir. Al cerrar cada tramo se **reescribe**: dice la verdad de hoy y no acumula estados viejos.
 
-Última reescritura: **2026-10-11**, tramo 1 (arranque y propuesta de tecnología).
+Última reescritura: **2026-10-11**, tramo 2 (evaluación de un juego del género de *Phoenix*).
 
 ---
 
 ## §0 Dónde quedó y qué sigue — léelo primero
 
-**Fase actual:** primera entrega entregada: **propuesta de tecnología** (`PROPUESTA-TECNOLOGIA.md`).
-**No hay código.** Esperamos a que Christian elija.
+**Fase actual:** dos entregas, ambas sin código:
+1. **Propuesta de tecnología** (`PROPUESTA-TECNOLOGIA.md`).
+2. **Evaluación de un juego de naves del género de *Phoenix* (1980)** (`EVALUACION-JUEGO-TIPO-PHOENIX.md`),
+   pedida por Christian: estimación de tiempo, controles (teclado, ratón, mando), 2K y 4K. Resultado:
+   alcance completo en ≈30–50 h de mi trabajo y ≈8–14 h del suyo, 3–5 semanas de calendario. Es
+   criterio propio sin calibrar. **No puede llamarse ni verse como *Phoenix*** (ADR-009). Para un juego
+   vertical conviene 640×360 (ADR-008).
+
+**No hay código.** Esperamos las decisiones de Christian.
 
 **Hecho y verificado:**
 - Repositorio git creado. En la nube es `dbaproniedperu-cris/dba`, rama
   `claude/retro-games-modern-resolution-lx4ps8`. Su raíz = `D:\NEGOCIO\SOFTWARE\JUEGOS` (ADR-001).
-- Creados `ESTADO-Y-CONTINUIDAD.md` (este), `DECISIONES-DE-DISENO.md`, `LEEME.md`, `.gitattributes`
-  y `PROPUESTA-TECNOLOGIA.md`.
+- Creados `ESTADO-Y-CONTINUIDAD.md` (este), `DECISIONES-DE-DISENO.md`, `LEEME.md`, `.gitattributes`,
+  `PROPUESTA-TECNOLOGIA.md` y `EVALUACION-JUEGO-TIPO-PHOENIX.md`.
+- Comprobada la aritmética de escalas para un juego vertical: las alturas exactas en 1080p, 1440p y
+  2160p son las que dividen a 360 (el máximo común divisor).
 - Tabla de escalado entero calculada con un script (`PROPUESTA-TECNOLOGIA.md` §4 y Anexo A).
 - Comprobado con comandos que los documentos compartidos de `D:\NEGOCIO\` **no son accesibles** desde la
   sesión en la nube (`PROPUESTA-TECNOLOGIA.md` §2).
@@ -35,7 +44,9 @@
    es dejarlos en una carpeta `_COMPARTIDOS-SOLO-LECTURA\` de este repositorio, aunque eso crea una
    copia que puede quedar desactualizada; es mejor adjuntarlos en cada sesión.
 2. Elegir **tecnología** (recomendada: Pygame-ce; alternativa: Godot 4) y **resolución interna**
-   (recomendada: 320×180).
+   (recomendada: 320×180 en general; 640×360 para un juego vertical).
+2b. Si se hace el juego de naves: elegir **alcance** (A, B o C), **tema y nombre propios**, y quién
+   hace el **arte y el sonido** (`EVALUACION-JUEGO-TIPO-PHOENIX.md` §7).
 3. Autorizar las **descargas** de la tabla de `PROPUESTA-TECNOLOGIA.md` §10 que correspondan.
 4. Ejecutar en la estación `py --version` y `py -m pip --version` y pasarme la salida.
 5. Clonar o actualizar el repositorio en `D:\NEGOCIO\SOFTWARE\JUEGOS` (comandos en §3).
@@ -61,7 +72,8 @@ apagan, y rendimiento en 4K por debajo de 16,6 ms por cuadro, medido.
 - ADR-003: fin de línea LF forzado (huellas SHA-256 estables).
 
 **Propuestas, esperan a Christian:** ADR-004 (320×180), ADR-005 (base común copiada con versión),
-ADR-006 (60 Hz, paso fijo, enteros con subpíxeles), ADR-007 (tecnología).
+ADR-006 (60 Hz, paso fijo, enteros con subpíxeles), ADR-007 (tecnología), ADR-008 (resolución por
+juego; 640×360 para juegos verticales), ADR-009 (género sí, expresión no).
 
 **Reglas del encargo que no cambian:** solo arte y música originales o con licencia libre declarada;
 nada se descarga sin permiso; se escribe en español; se propone antes de construir; lo que funciona no
@@ -78,6 +90,7 @@ se rompe (primero el candado, después el cambio).
 5. `D:\NEGOCIO\PERFIL-CHRISTIAN.md` y `PERFIL-PROFESIONAL.md`. **Pendiente de acceso.**
 6. `DECISIONES-DE-DISENO.md`.
 7. `PROPUESTA-TECNOLOGIA.md`.
+7b. `EVALUACION-JUEGO-TIPO-PHOENIX.md`.
 8. `LEEME.md` de la raíz y, cuando exista, el `LEEME.md` de cada juego.
 9. `D:\NEGOCIO\ESTANDAR-BD.md`: solo si algún día se usa SQL Server (hoy no).
 
@@ -103,9 +116,9 @@ git pull origin claude/retro-games-modern-resolution-lx4ps8
 
 **Comprobar las huellas de la entrega** (deben coincidir con §7):
 ```
-Get-FileHash -Algorithm SHA256 .gitattributes, DECISIONES-DE-DISENO.md, LEEME.md, PROPUESTA-TECNOLOGIA.md
+Get-FileHash -Algorithm SHA256 .gitattributes, DECISIONES-DE-DISENO.md, EVALUACION-JUEGO-TIPO-PHOENIX.md, LEEME.md, PROPUESTA-TECNOLOGIA.md
 ```
-En la nube o en Linux: `sha256sum .gitattributes DECISIONES-DE-DISENO.md LEEME.md PROPUESTA-TECNOLOGIA.md`.
+En la nube o en Linux: `sha256sum .gitattributes DECISIONES-DE-DISENO.md EVALUACION-JUEGO-TIPO-PHOENIX.md LEEME.md PROPUESTA-TECNOLOGIA.md`.
 PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúsculas.
 
 ---
@@ -122,6 +135,8 @@ PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúscul
 | P6 | Realinear `PROPUESTA-TECNOLOGIA.md` a `ESTRUCTURA-INFORMES.md` y a la lista §9 | Claude | Bloqueado por P1 |
 | P7 | Agregar a los perfiles lo aprendido (abajo) | Claude | Bloqueado por P1 |
 | P8 | Porción vertical: medir 4K primero y luego construir | Claude | Bloqueado por P2 y P3 |
+| P9 | Juego de naves: decidir alcance, tema y nombre, y arte | Christian | Abierto |
+| P10 | Recalibrar la estimación del juego de naves con las horas reales del tramo 1 | Claude | Bloqueado por P8 |
 
 **Fila propuesta para `ESTANDAR-DESARROLLO.md` §10** (adaptarla a las columnas reales de la tabla):
 
@@ -164,15 +179,16 @@ PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúscul
 ## §7 Estado al cerrar
 
 - **Fecha:** 2026-10-11
-- **Versión:** 0.0.1. Solo documentación (propuesta de tecnología); sin código.
+- **Versión:** 0.0.2. Solo documentación (propuesta de tecnología y evaluación del juego de naves); sin código.
 - **Pruebas:** no hay todavía (no hay código).
 - **Huellas SHA-256:**
 
 | Archivo | SHA-256 |
 |---|---|
 | `.gitattributes` | `6a0cae3e0ec19ca2f2ad0bc560d84e247736193eacfd08c4b89e739cd71c45f8` |
-| `DECISIONES-DE-DISENO.md` | `a71cb4e2aecfa87502207de9abe316cd3a8b02904ba02a607144e2fc61f4c8e5` |
-| `LEEME.md` | `4b87cc7a1708ae269c5f75f13a953b969ab3ba91a8694022782a99e62eceea6b` |
+| `DECISIONES-DE-DISENO.md` | `05a35a943239a00b377df202b5abf0a530c66a5a5f5fe258780ebb7b45fba348` |
+| `EVALUACION-JUEGO-TIPO-PHOENIX.md` | `2b9e2c7a16c689c845094af8635cb09c82086e9e83a035d8176e1485ec7429d5` |
+| `LEEME.md` | `fa86612e3c7aa584a0b023a3d01d32033f7ae0ce9d966548b5d498f7a3998a45` |
 | `PROPUESTA-TECNOLOGIA.md` | `2c455e9b832be27e503286500383a3fa4f8e07ff0b714b3a726861288ffd34a4` |
 
 - **Commit:** el que agrega este archivo en la rama `claude/retro-games-modern-resolution-lx4ps8`. Se

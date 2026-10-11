@@ -80,3 +80,24 @@ Estados posibles: **Propuesta** (espera a Christian), **Cerrada** (vigente), **R
 ## ADR-007 — Tecnología
 - **Estado:** **Propuesta**. Pygame-ce recomendada y Godot 4 como alternativa (`PROPUESTA-TECNOLOGIA.md`).
   **La decide Christian.**
+
+## ADR-008 — La resolución interna se decide por juego; para un juego vertical, 640×360
+- **Estado:** **Propuesta** (ver `EVALUACION-JUEGO-TIPO-PHOENIX.md` §3.3).
+- **Decisión:** ADR-004 (320×180) es el valor por defecto. Cada juego puede elegir otra resolución,
+  siempre que su altura divida a 360, para que escale exacto en 1080p, 1440p y 2160p. Un juego de
+  pantalla vertical usa 640×360 con un campo de juego de 288×360 centrado y paneles laterales.
+- **Motivo:** en 320×180 un campo vertical queda en 144×180, con naves de unos 8 px.
+- **Descartado:** usar la resolución del original (208×256), que no es exacta en 1080p, 1440p ni
+  2160p; obligar a todos los juegos a 320×180.
+- **Si se revierte sin saberlo:** un juego vertical queda ilegible, o se pierde la escala exacta en
+  las tres resoluciones objetivo.
+
+## ADR-009 — Juegos inspirados en clásicos: el género sí, la expresión no
+- **Estado:** **Propuesta** (criterio propio; no es asesoría legal).
+- **Decisión:** de un juego comercial se toman solo mecánicas de género. El nombre, el arte, los
+  sonidos, la música y la secuencia y el aspecto completos son propios, con diferencias deliberadas
+  de tema y reglas.
+- **Motivo:** la regla de derechos del encargo, y un precedente: copiar el aspecto y la sensación de
+  un juego trajo problemas legales a otros clones (Tetris contra Xio, EE. UU., 2012).
+- **Descartado:** el «clon fiel con arte redibujado».
+- **Si se revierte sin saberlo:** riesgo legal, y tener que rehacer el arte y el diseño ya hechos.
