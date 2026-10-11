@@ -101,3 +101,19 @@ Estados posibles: **Propuesta** (espera a Christian), **Cerrada** (vigente), **R
   un juego trajo problemas legales a otros clones (Tetris contra Xio, EE. UU., 2012).
 - **Descartado:** el «clon fiel con arte redibujado».
 - **Si se revierte sin saberlo:** riesgo legal, y tener que rehacer el arte y el diseño ya hechos.
+
+## ADR-010 — MAME se instala con un script; ni el emulador ni las ROM entran a git
+- **Estado:** Cerrada (2026-10-11).
+- **Decisión:** `MAME\` guarda solo la guía, el instalador (`instalar-mame.ps1`), los ajustes y el
+  lanzador. El emulador se descarga del sitio oficial en la estación de Christian, tras mostrar
+  nombre, origen y tamaño y verificar la huella. `MAME\.gitignore` excluye `mame\`, `descargas\`,
+  `*.zip`, `*.7z` y `*.exe`.
+- **Motivo:** el binario pesa unos 100 MB (GitHub rechaza archivos de más de 100 MB y el historial
+  crece para siempre). Las ROM tienen derechos de autor. Además, cumple la regla de «nada se descarga
+  sin permiso».
+- **Descartado:** subir MAME al repositorio; descargarlo desde la nube (la red de la sesión no llega
+  a `mamedev.org`).
+- **Si se revierte sin saberlo:** el repositorio se infla o se rechaza el envío, y se arriesga a
+  publicar una ROM.
+- **Relacionado:** `.gitattributes` extrae ahora los `.bat` y `.cmd` con CRLF (cmd.exe falla con
+  archivos de solo LF). Complementa ADR-003: la huella sigue siendo la misma en toda máquina.

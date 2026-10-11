@@ -11,12 +11,13 @@ Carpeta base: `D:\NEGOCIO\SOFTWARE\JUEGOS` (raíz del repositorio git).
 | `PROPUESTA-TECNOLOGIA.md` | Comparación de tecnologías y recomendación (primera entrega) |
 | `EVALUACION-JUEGO-TIPO-PHOENIX.md` | Estimación de tiempo y alcance de un juego de naves del género de *Phoenix* (1980) |
 | `.gitattributes` | Fuerza el fin de línea LF para que las huellas SHA-256 coincidan en toda máquina |
+| `MAME\` | Guía, instalador y ajustes para jugar el *Phoenix* original en MAME, en 4K y con mando (la ROM no se incluye) |
 | `<NOMBRE-JUEGO>\` | Un juego por carpeta, con su código, recursos, pruebas y `LEEME.md` (todavía no hay ninguno) |
 | `COMUN\` | Base reutilizable con versión (todavía no existe) |
 
 ## Estado
 
-Primera entrega: **propuesta de tecnología. No hay código todavía.** Ver `ESTADO-Y-CONTINUIDAD.md` §0.
+Entregas: propuesta de tecnología, evaluación del juego de naves y guía de MAME. **No hay código de juego todavía.** Ver `ESTADO-Y-CONTINUIDAD.md` §0.
 
 ## Reglas que aplican a todo lo de esta carpeta
 

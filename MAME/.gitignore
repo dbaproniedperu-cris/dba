@@ -1,0 +1,7 @@
+# La instalacion de MAME, las ROM y lo que MAME genera NUNCA van al repositorio:
+# son binarios grandes y las ROM tienen derechos de autor.
+mame/
+descargas/
+*.zip
+*.7z
+*.exe

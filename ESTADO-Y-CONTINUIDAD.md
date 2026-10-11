@@ -3,7 +3,7 @@
 > **Regla:** después de cada compactación de la conversación, este documento se lee **COMPLETO** antes
 > de seguir. Al cerrar cada tramo se **reescribe**: dice la verdad de hoy y no acumula estados viejos.
 
-Última reescritura: **2026-10-11**, tramo 2 (evaluación de un juego del género de *Phoenix*).
+Última reescritura: **2026-10-11**, tramo 3 (guía e instalador de MAME para jugar el *Phoenix* original).
 
 ---
 
@@ -24,7 +24,13 @@ el original (última edición oficial: *Taito Legends*, 2005, que incluía PC; e
 con una copia legal; cartucho de Atari 2600 con la consola Atari 2600+). **El juego del género queda en
 pausa** hasta que decida.
 
-**No hay código.** Esperamos las decisiones de Christian.
+**Tramo 3 (pedido de Christian):** guía para jugar el *Phoenix* **original** en MAME, en 4K y con
+mando, en `MAME\`: `GUIA-MAME-4K-MANDO.md`, `instalar-mame.ps1`, `ajustes-4k-mando.ini` y
+`jugar-phoenix.bat`. Christian **ya descargó MAME en `C:\IAPRG\game`**; el script lo usa con
+`-RutaMame C:\IAPRG\game`. **La ROM no la proveo ni explico cómo conseguirla.** El script y el `.bat`
+**no se han ejecutado nunca**: la sesión no tiene PowerShell ni acceso a `mamedev.org`.
+
+**No hay código del proyecto de juegos.** Esperamos las decisiones de Christian.
 
 **Hecho y verificado:**
 - Repositorio git creado. En la nube es `dbaproniedperu-cris/dba`, rama
@@ -47,6 +53,9 @@ pausa** hasta que decida.
 - **No actualicé los perfiles**: no tengo los archivos. Lo aprendido está en §4.
 
 **Lo que le toca a Christian, en orden:**
+0. **Probar MAME:** `git pull`; en PowerShell, desde `JUEGOS\MAME`:
+   `powershell -ExecutionPolicy Bypass -File .\instalar-mame.ps1 -RutaMame C:\IAPRG\game`; luego
+   `jugar-phoenix.bat`. Si algo falla, pasarme el texto exacto del error o de los avisos.
 1. **Darme acceso a los documentos compartidos.** Lo más simple es adjuntarlos al chat. Otra opción
    es dejarlos en una carpeta `_COMPARTIDOS-SOLO-LECTURA\` de este repositorio, aunque eso crea una
    copia que puede quedar desactualizada; es mejor adjuntarlos en cada sesión.
@@ -123,9 +132,10 @@ git pull origin claude/retro-games-modern-resolution-lx4ps8
 
 **Comprobar las huellas de la entrega** (deben coincidir con §7):
 ```
-Get-FileHash -Algorithm SHA256 .gitattributes, DECISIONES-DE-DISENO.md, EVALUACION-JUEGO-TIPO-PHOENIX.md, LEEME.md, PROPUESTA-TECNOLOGIA.md
+Get-FileHash -Algorithm SHA256 .gitattributes, DECISIONES-DE-DISENO.md, EVALUACION-JUEGO-TIPO-PHOENIX.md, LEEME.md, PROPUESTA-TECNOLOGIA.md, MAME\*.*, MAME\.gitignore
 ```
-En la nube o en Linux: `sha256sum .gitattributes DECISIONES-DE-DISENO.md EVALUACION-JUEGO-TIPO-PHOENIX.md LEEME.md PROPUESTA-TECNOLOGIA.md`.
+En la nube o en Linux: `sha256sum .gitattributes DECISIONES-DE-DISENO.md EVALUACION-JUEGO-TIPO-PHOENIX.md LEEME.md PROPUESTA-TECNOLOGIA.md MAME/* MAME/.gitignore`.
+`jugar-phoenix.bat` se extrae con CRLF en toda máquina; la huella de §7 es la de esa versión..
 PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúsculas.
 
 ---
@@ -143,6 +153,8 @@ PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúscul
 | P7 | Agregar a los perfiles lo aprendido (abajo) | Claude | Bloqueado por P1 |
 | P8 | Porción vertical: medir 4K primero y luego construir | Claude | Bloqueado por P2 y P3 |
 | P9 | Juego de naves: Christian no quiere homenaje; decidir si se descarta, se hace homenaje o se pasa a otro juego | Christian | En pausa |
+| P11 | Probar `instalar-mame.ps1 -RutaMame C:\IAPRG\game` y `jugar-phoenix.bat` en la estación; reportar errores | Christian | Abierto |
+| P12 | Corregir el script con los errores reales que salgan | Claude | Bloqueado por P11 |
 | P10 | Recalibrar la estimación del juego de naves con las horas reales del tramo 1 | Claude | Bloqueado por P8 |
 
 **Fila propuesta para `ESTANDAR-DESARROLLO.md` §10** (adaptarla a las columnas reales de la tabla):
@@ -166,6 +178,9 @@ PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúscul
 | T1 | La sesión de Claude puede correr en la nube y no ver `D:\NEGOCIO\` | Comprobarlo con comandos al empezar y pedir los documentos; no suponer su contenido |
 | T2 | En la nube no hay lanzador `py`: es `python3` (3.13 en esta sesión). En la estación es `py` | Escribir los comandos de §3 para la estación y anotar el equivalente |
 | T3 | Git en Windows convierte a CRLF y cambia las huellas SHA-256 | `.gitattributes` con `eol=lf` (ADR-003) |
+| T5 | PowerShell 5.1 lee los `.ps1` sin BOM como ANSI y rompe las tildes | Los `.ps1` y `.bat` se escriben solo en ASCII (comprobado con `grep -P '[^\x00-\x7F]'`) |
+| T6 | `cmd.exe` falla con `.bat` de solo LF (etiquetas y `goto`) | `.gitattributes`: `*.bat text eol=crlf` (ADR-010) |
+| T7 | La red de la sesión en la nube no llega a `mamedev.org` ni a la API de GitHub de otros repositorios | Las descargas se hacen con scripts que Christian ejecuta en su estación |
 | T4 (anticipada) | Windows con escalado al 125 % o 150 % estira la ventana con bilineal si el proceso no declara DPI | Declarar *per-monitor DPI aware*; probarlo en la porción vertical |
 
 ---
@@ -186,17 +201,22 @@ PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúscul
 ## §7 Estado al cerrar
 
 - **Fecha:** 2026-10-11
-- **Versión:** 0.0.2. Solo documentación (propuesta de tecnología y evaluación del juego de naves); sin código.
+- **Versión:** 0.0.3. Documentación más los scripts de MAME (sin probar en Windows); sin código de juego.
 - **Pruebas:** no hay todavía (no hay código).
 - **Huellas SHA-256:**
 
 | Archivo | SHA-256 |
 |---|---|
-| `.gitattributes` | `6a0cae3e0ec19ca2f2ad0bc560d84e247736193eacfd08c4b89e739cd71c45f8` |
-| `DECISIONES-DE-DISENO.md` | `05a35a943239a00b377df202b5abf0a530c66a5a5f5fe258780ebb7b45fba348` |
+| `.gitattributes` | `d57513eb5b61b40c46a768d13aeb3d4cc94f54ffabcc33b5d3756181acd07550` |
+| `DECISIONES-DE-DISENO.md` | `0f0a594573b4efb3ce752528b30115ca5fd6884cbd0421ba982d6704a816adb8` |
 | `EVALUACION-JUEGO-TIPO-PHOENIX.md` | `2b9e2c7a16c689c845094af8635cb09c82086e9e83a035d8176e1485ec7429d5` |
-| `LEEME.md` | `fa86612e3c7aa584a0b023a3d01d32033f7ae0ce9d966548b5d498f7a3998a45` |
+| `LEEME.md` | `3b112780afd58ceaf2e0f340817411e57ba997a6274b80e611cd1e2db111b09e` |
 | `PROPUESTA-TECNOLOGIA.md` | `2c455e9b832be27e503286500383a3fa4f8e07ff0b714b3a726861288ffd34a4` |
+| `MAME/GUIA-MAME-4K-MANDO.md` | `a8f3b50f84c3e8e4af29a33cc69d81f8daa0694ba8d9ff51d98e51b1ed418998` |
+| `MAME/instalar-mame.ps1` | `684bc2fa1f35e11f2528178499dc1455d4675429b597284a1aaaaed0fcd6ec84` |
+| `MAME/ajustes-4k-mando.ini` | `b57670e8b08c5e9f6103255d54e4ba658a3dad77fdc0c8c8c59678d05757df5b` |
+| `MAME/.gitignore` | `62c59f2bbd7d0a5f34abbcba7cd5b2a185b1b1908f744cf9c3b98e54488a48aa` |
+| `MAME/jugar-phoenix.bat` (CRLF) | `99451170a731f2d7178ef5afa44d50ca3310942cc450619a23c6e8ed0901e530` |
 
 - **Commit:** el que agrega este archivo en la rama `claude/retro-games-modern-resolution-lx4ps8`. Se
   consulta con `git log -1 --format=%H -- ESTADO-Y-CONTINUIDAD.md`. No va escrito aquí porque un

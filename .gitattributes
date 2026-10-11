@@ -13,3 +13,8 @@
 *.otf  binary
 *.zip  binary
 *.exe  binary
+
+# Los .bat y .cmd se extraen con CRLF en toda máquina: cmd.exe tiene fallos conocidos con
+# archivos de solo LF (etiquetas y goto). Al ser igual en toda máquina, la huella sigue estable.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
