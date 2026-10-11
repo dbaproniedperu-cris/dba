@@ -17,6 +17,13 @@
    criterio propio sin calibrar. **No puede llamarse ni verse como *Phoenix*** (ADR-009). Para un juego
    vertical conviene 640×360 (ADR-008).
 
+**Respuesta de Christian a la evaluación (2026-10-11):** quiere *Phoenix* **tal cual**, con sus
+figuras y sonidos, por nostalgia. Un homenaje con arte propio **no lo convence**. Se le explicó que no
+se puede copiar (derechos vigentes; regla del encargo y ADR-009) y se le dieron rutas legales para jugar
+el original (última edición oficial: *Taito Legends*, 2005, que incluía PC; emulador MAME o RetroArch
+con una copia legal; cartucho de Atari 2600 con la consola Atari 2600+). **El juego del género queda en
+pausa** hasta que decida.
+
 **No hay código.** Esperamos las decisiones de Christian.
 
 **Hecho y verificado:**
@@ -135,7 +142,7 @@ PowerShell muestra la huella en mayúsculas; se compara sin distinguir mayúscul
 | P6 | Realinear `PROPUESTA-TECNOLOGIA.md` a `ESTRUCTURA-INFORMES.md` y a la lista §9 | Claude | Bloqueado por P1 |
 | P7 | Agregar a los perfiles lo aprendido (abajo) | Claude | Bloqueado por P1 |
 | P8 | Porción vertical: medir 4K primero y luego construir | Claude | Bloqueado por P2 y P3 |
-| P9 | Juego de naves: decidir alcance, tema y nombre, y arte | Christian | Abierto |
+| P9 | Juego de naves: Christian no quiere homenaje; decidir si se descarta, se hace homenaje o se pasa a otro juego | Christian | En pausa |
 | P10 | Recalibrar la estimación del juego de naves con las horas reales del tramo 1 | Claude | Bloqueado por P8 |
 
 **Fila propuesta para `ESTANDAR-DESARROLLO.md` §10** (adaptarla a las columnas reales de la tabla):
