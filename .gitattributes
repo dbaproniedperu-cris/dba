@@ -1,0 +1,15 @@
+# Los textos se guardan y se extraen con fin de línea LF en toda máquina.
+# Motivo: las huellas SHA-256 de la entrega se calculan sobre los bytes del archivo;
+# si Windows convierte a CRLF al extraer, la huella calculada en la estación no coincide
+# con la sellada. Ver DECISIONES-DE-DISENO.md, ADR-003.
+* text=auto eol=lf
+
+# Binarios: nunca se convierten.
+*.png  binary
+*.jpg  binary
+*.wav  binary
+*.ogg  binary
+*.ttf  binary
+*.otf  binary
+*.zip  binary
+*.exe  binary
